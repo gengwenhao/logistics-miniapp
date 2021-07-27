@@ -18,6 +18,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../static/styles/scss/geng.scss';
+
 #deliver {
   padding: 30rpx;
 }

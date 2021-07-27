@@ -41,6 +41,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../static/styles/scss/geng.scss';
+
 #userprofile {
   background: rgba(242, 242, 242, 1);
   min-height: 100vh;

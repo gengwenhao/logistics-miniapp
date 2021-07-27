@@ -68,6 +68,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../static/styles/scss/geng.scss";
+
 #orders {
   background: rgba(242, 242, 242, 1);
   min-height: 100vh;
@@ -94,10 +96,8 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 32rpx;
-
-        .title-r{
-          cursor: pointer;
-        }
+        font-size: $font-size-medium;
+        color: $font-color-black;
       }
 
       // 起始地址
@@ -107,6 +107,7 @@ export default {
         justify-content: space-around;
         align-items: center;
         margin-bottom: 46rpx;
+        color: $font-color-black;
 
         .item {
           display: flex;
@@ -119,27 +120,28 @@ export default {
           }
 
           .ch-2 {
-            font-size: 24rpx;
-            color: #AAAAAA;
+            font-size: $font-size-small;
+            color: $font-color-gray;
           }
         }
       }
 
       // 最新物流
+      //.tip-1 {
+      //  height: 40rpx;
+      //  line-height: 40rpx;
+      //  font-size: $font-size-small;
+      //  overflow: hidden;
+      //  border-radius: 2rpx solid #efefef;
+      //  color: #AAAAAA;
+      //}
+
+      // 更新时间
+      .tip-2,
       .tip-1{
         height: 40rpx;
         line-height: 40rpx;
-        font-size: 30rpx;
-        overflow: hidden;
-        border-radius: 2rpx solid #efefef;
-        color: #AAAAAA;
-      }
-
-      // 更新时间
-      .tip-2{
-        height: 40rpx;
-        line-height: 40rpx;
-        font-size: 30rpx;
+        font-size: $font-size-small;
         overflow: hidden;
         color: #AAAAAA;
       }

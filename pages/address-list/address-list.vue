@@ -3,7 +3,7 @@
     <!-- 控件组 -->
     <view class="control-group">
       <view class="control">
-        <view class="btn">新增地址</view>
+        <view class="btn blue">新增地址</view>
       </view>
       <view class="control">
         <u-input v-model="form.keyWord" height="60" :type="type" :border="true" placeholder="请输入姓名/手机号/地址"/>
@@ -58,10 +58,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../static/styles/scss/geng.scss';
+
 #address-list {
   min-height: 100vh;
   height: 100%;
-  background: #f2f2f2;
+  background: $bg-color-gray;
 
   // 控件组
   .control-group {
@@ -78,15 +80,6 @@ export default {
       height: 64rpx;
       line-height: 64rpx;
       margin-right: 20rpx;
-
-      .btn {
-        background: #02a7f0;
-        color: #FFFFFF;
-        text-align: center;
-        border: 2rpx solid #EFEFEF;
-        border-radius: 50rpx;
-        font-size: 28rpx;
-      }
     }
 
     // 输入框
@@ -112,7 +105,7 @@ export default {
           flex-direction: row;
           justify-content: flex-start;
           align-items: center;
-          font-size: 32rpx;
+          font-size: $font-size-medium;
           color: #333333;
 
           .tel {
@@ -124,24 +117,25 @@ export default {
         .place-line {
           color: #8f8d8e;
           padding-top: 8rpx;
+          font-size: $font-size-small;
         }
       }
 
       // 编辑
-      .edit-group{
+      .edit-group {
         padding: 16rpx 0;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         color: #8f8d8e;
 
-        .inner-con{
+        .inner-con {
           display: flex;
           flex-direction: row;
           justify-content: flex-start;
           align-items: center;
 
-          .edit-item{
+          .edit-item {
             margin-right: 26rpx;
           }
         }
