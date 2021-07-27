@@ -10,7 +10,7 @@
 
       <!-- 功能组 -->
       <view class="tool-list">
-        <view class="tool">
+        <view class="card tool">
           <u-image width="60rpx" height="60rpx" src="../../../static/images/地址簿图标.png"/>
           <view class="tool-title" @click="toAddressList">地址簿</view>
         </view>
@@ -67,14 +67,11 @@ export default {
     padding: 30rpx 20rpx;
 
     .tool {
-      padding-left: 40rpx;
-      background: #FFFFFF;
       height: 110rpx;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      border-radius: 20rpx;
       font-size: 30rpx;
       color: #333333;
 

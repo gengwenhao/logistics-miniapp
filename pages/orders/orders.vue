@@ -86,10 +86,6 @@ export default {
     padding: 34rpx;
 
     .card {
-      background: #fff;
-      border-radius: 30rpx;
-      padding: 40rpx;
-      margin-bottom: 28rpx;
 
       // 订单号
       .title {

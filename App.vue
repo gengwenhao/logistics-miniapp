@@ -15,4 +15,11 @@ export default {
 <style lang="scss">
 /*每个页面公共css */
 @import "uview-ui/index";
+
+.card {
+  background: #FFFFFF;
+  border-radius: 18rpx;
+  margin-bottom: 24rpx;
+  padding: 12rpx 18rpx;
+}
 </style>

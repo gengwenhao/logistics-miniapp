@@ -11,7 +11,7 @@
     </view>
 
     <view class="address-group">
-      <view class="address" v-for="item in 9" :key="item">
+      <view class="card address" v-for="item in 9" :key="item">
         <view class="information">
           <view class="name-line">
             <view class="name">陈东东</view>
@@ -100,10 +100,6 @@ export default {
     padding: 22rpx;
 
     .address {
-       border-radius: 18rpx;
-      background: #FFFFFF;
-      margin-bottom: 24rpx;
-      padding: 12rpx 18rpx;
 
       // 信息
       .information {
