@@ -11,16 +11,23 @@
       }
     },
     {
-      "path": "pages/userprofile/userprofile",
+      "path": "pages/deliver/deliver",
       "style": {
         "navigationBarTitleText": "我要发货",
         "enablePullDownRefresh": false
       }
     },
     {
-      "path": "pages/deliver/deliver",
+      "path": "pages/userprofile/userprofile",
       "style": {
         "navigationBarTitleText": "我的",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/address-list/address-list",
+      "style": {
+        "navigationBarTitleText": "地址簿",
         "enablePullDownRefresh": false
       }
     }
