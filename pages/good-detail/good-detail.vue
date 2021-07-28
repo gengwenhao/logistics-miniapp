@@ -2,8 +2,8 @@
 <template>
   <view id="good-detail">
 
-    <view class="controls-group">
-      <u-input class="input" border="true"/>
+    <view class="top-control-group">
+      <u-input class="input" border="true" placeholder="请输入货物名称" />
       <button class="btn blue">添加</button>
     </view>
 
@@ -60,7 +60,7 @@ export default {
   @include background-common;
 
   // 控件组
-  .controls-group {
+  .top-control-group {
     width: 100%;
     height: 120rpx;
     line-height: 120rpx;
@@ -73,11 +73,11 @@ export default {
       width: calc(100% - 200rpx);
     }
 
-
     .btn{
       width: 180rpx;
-      height: 70rpx;
+      height: 76rpx;
       line-height: 70rpx;
+      border-radius: 8rpx;
     }
   }
 

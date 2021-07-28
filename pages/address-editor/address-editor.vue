@@ -33,10 +33,7 @@
 </template>
 
 <script>
-import UCitySelect from "./u-city-select"
-
 export default {
-  components: {UCitySelect},
   data() {
     return {
       // show flag

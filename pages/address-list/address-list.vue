@@ -3,12 +3,8 @@
   <view id="address-list">
     <!-- 控件组 -->
     <view class="control-group">
-      <view class="control">
-        <view class="btn blue" @click="toAddressAdder">新增地址</view>
-      </view>
-      <view class="control">
-        <u-input v-model="form.keyWord" height="60" :type="type" :border="true" placeholder="请输入姓名/手机号/地址"/>
-      </view>
+      <u-input class="input" :border="true" placeholder="请输入姓名/手机号/地址"/>
+      <view class="btn blue" @click="toAddressAdder">新增地址</view>
     </view>
 
     <view class="address-group">
@@ -85,24 +81,24 @@ export default {
 
   // 控件组
   .control-group {
-    background: #FFFFFF;
+    width: 100%;
+    height: 120rpx;
+    line-height: 120rpx;
+    background: $bg-color-white;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-    padding: 23rpx;
+    padding-left: 20rpx;
 
-    // 按钮
-    .control:nth-child(1) {
-      flex: 1;
-      height: 64rpx;
-      line-height: 64rpx;
-      margin-right: 20rpx;
+    .input{
+      width: calc(100% - 200rpx);
+      margin-right: 8rpx;
     }
 
-    // 输入框
-    .control:nth-child(2) {
-      flex: 2;
+    .btn{
+      width: 180rpx;
+      height: 76rpx;
+      line-height: 70rpx;
+      border-radius: 8rpx;
     }
   }
 

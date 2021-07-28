@@ -2,12 +2,12 @@
   <view id="orders">
 
     <!-- controls group -->
-    <div class="controls-group bg-white">
+    <div class="control-group bg-white">
       <u-input v-model="form.keyWord" :type="type" :border="true" placeholder="请输入订单编号"/>
     </div>
 
     <!-- card list -->
-    <view class="card-list">
+    <view class="card-list" @click.self="toOrderDetail">
       <view class="card" v-for="item in 4" :key="item">
         <view class="title">
           <view class="title-l">订单号: 123412341234123</view>
@@ -89,7 +89,7 @@ export default {
   }
 
 
-  .controls-group {
+  .control-group {
     padding: 30rpx;
   }
 

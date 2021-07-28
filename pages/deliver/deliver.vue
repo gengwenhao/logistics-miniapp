@@ -40,7 +40,7 @@
     <!-- 货物信息 -->
     <view class="card goods-info">
       <view class="goods-title">货物信息
-        <view class="add-good">添加货物</view>
+        <view class="add-good" @click="toGoodDetail">添加货物</view>
       </view>
       <view class="goods-con">
         <view class="goods-list">
