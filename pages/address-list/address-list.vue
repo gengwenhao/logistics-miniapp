@@ -67,6 +67,12 @@ export default {
         url:'../address-adder/address-adder'
       })
     }
+  },
+  // 下拉刷新事件
+  onPullDownRefresh(){
+    setTimeout(function () {
+      uni.stopPullDownRefresh()
+    }, 1000)
   }
 }
 </script>
@@ -140,6 +146,7 @@ export default {
         flex-direction: row;
         justify-content: flex-end;
         color: #8f8d8e;
+        font-size: $font-size-small;
 
         .inner-con {
           display: flex;

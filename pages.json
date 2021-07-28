@@ -7,14 +7,14 @@
       "path": "pages/orders/orders",
       "style": {
         "navigationBarTitleText": "我的订单",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/deliver/deliver",
       "style": {
         "navigationBarTitleText": "我要发货",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
     },
     {
@@ -28,21 +28,21 @@
       "path": "pages/address-list/address-list",
       "style": {
         "navigationBarTitleText": "地址簿",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/order-detail/order-detail",
       "style": {
         "navigationBarTitleText": "订单详情",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
     },
     {
       "path": "pages/good-detail/good-detail",
       "style": {
         "navigationBarTitleText": "货物详情",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
     },
     {
@@ -68,20 +68,20 @@
     "list": [
       {
         "pagePath": "pages/orders/orders",
-        "iconPath": "static/images/订单.png",
-        "selectedIconPath": "static/images/订单(1).png",
+        "iconPath": "static/images/orders.png",
+        "selectedIconPath": "static/images/orders(1).png",
         "text": "我的订单"
       },
       {
         "pagePath": "pages/deliver/deliver",
-        "iconPath": "static/images/发货.png",
-        "selectedIconPath": "static/images/发货(1).png",
+        "iconPath": "static/images/deliver.png",
+        "selectedIconPath": "static/images/deliver(1).png",
         "text": "我要发货"
       },
       {
         "pagePath": "pages/userprofile/userprofile",
-        "iconPath": "static/images/我的.png",
-        "selectedIconPath": "static/images/我的(1).png",
+        "iconPath": "static/images/userprofile.png",
+        "selectedIconPath": "static/images/userprofile(1).png",
         "text": "我的"
       }
     ]

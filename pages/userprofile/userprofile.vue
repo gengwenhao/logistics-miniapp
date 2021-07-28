@@ -11,7 +11,7 @@
     <!-- 功能组 -->
     <view class="tool-list">
       <view class="card tool">
-        <u-image width="60rpx" height="60rpx" src="../../../static/images/地址簿图标.png"/>
+        <u-image width="60rpx" height="60rpx" src="../../../static/images/address-icon.png"/>
         <view class="tool-title" @click="toAddressList">地址簿</view>
       </view>
     </view>
@@ -44,9 +44,6 @@ export default {
 
 #userprofile {
   @include background-common;
-  //background: rgba(242, 242, 242, 1);
-  //min-height: 100vh;
-  //height: 100%;
   display: flex;
   flex-direction: column;
 
@@ -93,10 +90,10 @@ export default {
 
     .btn {
       width: 45vw;
-      height: 95rpx;
-      line-height: 95rpx;
+      height: 80rpx;
+      line-height: 80rpx;
       background: #FFFFFF;
-      color: $font-color-gray;
+      color: $font-color-black;
       font-size: 34rpx;
       border: 2rpx solid #939393;
       border-radius: 12rpx;

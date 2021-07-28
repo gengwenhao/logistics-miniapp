@@ -41,27 +41,28 @@
     <view class="card express-info">
       <view class="express-title">物流信息</view>
       <view class="express-detail">
-         <view class="express-line" v-for="item in 9" :key="item">
-           <view class="status-name">未发货</view>
-           <view class="status-icon">
-             <view class="inner-icon"></view>
-             <view class="divider"></view>
-           </view>
-           <view class="status-detail">
-             <view class="detail-date">
-               2021-02-01 10:10:10
-             </view>
-             <view class="detail-text">
-               XXXXXXXXXXXXXXXXXXX
-               XXXXXXXXXXXXXXXXXXX
-               XXXXXXXXXXXXXXXXXXX
-               XXXXXXXXXXXXXXXXXXX
-             </view>
-           </view>
-         </view>
+        <view class="express-line" v-for="item in 9" :key="item">
+          <view class="status-name">未发货</view>
+          <view class="status-icon">
+            <view class="inner-icon"></view>
+            <view class="divider"></view>
+          </view>
+          <view class="status-detail">
+            <view class="detail-date">
+              2021-02-01 10:10:10
+            </view>
+            <view class="detail-text">
+              XXXXXXXXXXXXXXXXXXX
+              XXXXXXXXXXXXXXXXXXX
+              XXXXXXXXXXXXXXXXXXX
+              XXXXXXXXXXXXXXXXXXX
+            </view>
+          </view>
+        </view>
       </view>
     </view>
 
+    <!-- 货物信息 -->
     <view class="card goods-info">
       <view class="goods-title">货物信息</view>
       <view class="goods-con">
@@ -70,7 +71,7 @@
           <view class="good-item">2、我是货物名称，在这里显示</view>
           <view class="good-item">3、我是货物名称，在这里显示</view>
         </view>
-        <view class="control">
+        <view class="control" @click="toGoodDetail">
           更多
         </view>
       </view>
@@ -103,7 +104,20 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    // 跳转到货物详情
+    toGoodDetail() {
+      uni.navigateTo({
+        url: '../good-detail/good-detail'
+      })
+    }
+  },
+  // 下拉刷新事件
+  onPullDownRefresh(){
+    setTimeout(function () {
+      uni.stopPullDownRefresh()
+    }, 1000)
+  }
 }
 </script>
 
@@ -248,14 +262,14 @@ export default {
       padding: 32rpx 16rpx;
 
       // 每一条物流信息
-      .express-line{
+      .express-line {
         display: flex;
         flex-direction: row;
         align-items: stretch;
         color: $font-color-gray;
 
         // 状态：未发货、已发货
-        .status-name{
+        .status-name {
           width: 80rpx;
           display: flex;
           flex-direction: row;
@@ -264,21 +278,21 @@ export default {
         }
 
         // 状态圆点
-        .status-icon{
+        .status-icon {
           width: 80rpx;
 
           display: flex;
           flex-direction: column;
           align-items: center;
 
-          .divider{
+          .divider {
             border-right: 2rpx dotted $font-color-gray;
             flex: 1;
           }
 
-          .inner-icon{
-            width:$font-size-small;
-            height:$font-size-small;
+          .inner-icon {
+            width: $font-size-small;
+            height: $font-size-small;
             border-radius: 50%;
             background: $font-color-gray;
           }
@@ -286,33 +300,33 @@ export default {
         }
 
         // 物流详情
-        .status-detail{
+        .status-detail {
           flex: 1;
           padding-bottom: 24rpx;
 
-          .detail-date{
+          .detail-date {
             padding-bottom: 12rpx;
           }
         }
 
         // 第一个圆点点亮
-        &:first-child{
-          .status-name{
+        &:first-child {
+          .status-name {
             color: $bg-color-blue;
           }
 
-          .inner-icon{
+          .inner-icon {
             background: $bg-color-blue;
           }
 
-          .status-detail{
+          .status-detail {
             color: $font-color-black;
           }
         }
 
         // 最后一个圆点没竖线
-        &:last-child{
-          .divider{
+        &:last-child {
+          .divider {
             opacity: 0;
           }
         }
@@ -382,7 +396,7 @@ export default {
           padding-right: 4rpx;
         }
 
-        .detail-value{
+        .detail-value {
           flex: 1;
           text-indent: 18rpx;
           border-bottom: 2rpx solid $bg-color-gray;
