@@ -21,6 +21,7 @@ export default {
 @import '../../static/styles/scss/geng.scss';
 
 #deliver {
+  @include background-common;
   padding: 30rpx;
 }
 </style>

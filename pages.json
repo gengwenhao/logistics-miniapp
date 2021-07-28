@@ -30,6 +30,34 @@
         "navigationBarTitleText": "地址簿",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/order-detail/order-detail",
+      "style": {
+        "navigationBarTitleText": "订单详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/good-detail/good-detail",
+      "style": {
+        "navigationBarTitleText": "货物详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/address-adder/address-adder",
+      "style": {
+        "navigationBarTitleText": "新增地址",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/address-editor/address-editor",
+      "style": {
+        "navigationBarTitleText": "编辑地址",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "tabBar": {

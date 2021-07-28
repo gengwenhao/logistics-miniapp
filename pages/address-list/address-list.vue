@@ -1,9 +1,10 @@
+<!-- 地址簿 -->
 <template>
   <view id="address-list">
     <!-- 控件组 -->
     <view class="control-group">
       <view class="control">
-        <view class="btn blue">新增地址</view>
+        <view class="btn blue" @click="toAddressAdder">新增地址</view>
       </view>
       <view class="control">
         <u-input v-model="form.keyWord" height="60" :type="type" :border="true" placeholder="请输入姓名/手机号/地址"/>
@@ -23,7 +24,7 @@
         </view>
         <view class="edit-group">
           <view class="inner-con">
-            <view class="edit-item">编辑</view>
+            <view class="edit-item" @click="toAddressEditor">编辑</view>
             <view class="edit-item">删除</view>
           </view>
         </view>
@@ -53,7 +54,20 @@ export default {
       }
     }
   },
-  methods: {}
+  methods: {
+    // 跳转到地址编辑页面
+    toAddressEditor(){
+      uni.navigateTo({
+        url:'../address-editor/address-editor'
+      })
+    },
+    // 跳转到地址新增页面
+    toAddressAdder(){
+      uni.navigateTo({
+        url:'../address-adder/address-adder'
+      })
+    }
+  }
 }
 </script>
 
@@ -61,9 +75,7 @@ export default {
 @import '../../static/styles/scss/geng.scss';
 
 #address-list {
-  min-height: 100vh;
-  height: 100%;
-  background: $bg-color-gray;
+  @include background-common;
 
   // 控件组
   .control-group {

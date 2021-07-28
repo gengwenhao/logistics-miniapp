@@ -1,48 +1,46 @@
 <template>
   <view id="orders">
-    <u-row gutter="16">
 
-      <!-- controls group -->
-      <div class="controls-group bg-white">
-        <u-input v-model="form.keyWord" :type="type" :border="true" placeholder="请输入订单编号"/>
-      </div>
+    <!-- controls group -->
+    <div class="controls-group bg-white">
+      <u-input v-model="form.keyWord" :type="type" :border="true" placeholder="请输入订单编号"/>
+    </div>
 
-      <!-- card list -->
-      <view class="card-list">
-        <view class="card" v-for="item in 4" :key="item">
-          <view class="title">
-            <view class="title-l">订单号: 123412341234123</view>
-            <view class="title-r">查看详情 ></view>
-          </view>
-          <view class="place">
-            <view class="place-l">
-              <view class="item">
-                <view class="ch-1">南平市</view>
-                <view class="ch-2">陈冬冬</view>
-              </view>
-            </view>
-            <view class="place-c">
-              <view class="item">
-                <view class="ch-1">-></view>
-                <view class="ch-2">已发货</view>
-              </view>
-            </view>
-            <view class="place-r">
-              <view class="item">
-                <view class="ch-1">福州市</view>
-                <view class="ch-2">陈冬</view>
-              </view>
-            </view>
-          </view>
-          <view class="tip-1">最新物流：物流到达XXXXXXXXX准备发往XXXXXXXXX</view>
-          <view class="tip-2">更新时间：2021-02-02 10:20:10</view>
-        </view>
-        <view class="more">
-          <u-loadmore icon-type="flower" :status="loadStatus" :load-text="loadText"/>
-        </view>
+    <!-- card list -->
+    <view class="card-list">
+      <view class="card" v-for="item in 4" :key="item">
+        <view class="title">
+                         <view class="title-l">订单号: 123412341234123</view>
+                         <view class="title-r">查看详情 ></view>
+                         </view>
+        <view class="place">
+                         <view class="place-l">
+                         <view class="item">
+                         <view class="ch-1">南平市</view>
+                         <view class="ch-2">陈冬冬</view>
+                         </view>
+                         </view>
+                         <view class="place-c">
+                         <view class="item">
+                         <view class="ch-1">-></view>
+                         <view class="ch-2">已发货</view>
+                         </view>
+                         </view>
+                         <view class="place-r">
+                         <view class="item">
+                         <view class="ch-1">福州市</view>
+                         <view class="ch-2">陈冬</view>
+                         </view>
+                         </view>
+                         </view>
+        <view class="tip-1">最新物流：物流到达XXXXXXXXX准备发往XXXXXXXXX</view>
+        <view class="tip-2">更新时间：2021-02-02 10:20:10</view>
       </view>
+      <view class="more">
+        <u-loadmore icon-type="flower" :status="loadStatus" :load-text="loadText"/>
+      </view>
+    </view>
 
-    </u-row>
   </view>
 </template>
 
@@ -71,9 +69,7 @@ export default {
 @import "../../static/styles/scss/geng.scss";
 
 #orders {
-  background: rgba(242, 242, 242, 1);
-  min-height: 100vh;
-  height: 100%;
+  @include background-common;
 
   .bg-white {
     background: #FFFFFF;
@@ -96,7 +92,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 32rpx;
-        font-size: $font-size-medium;
+        font-size: $font-size-small;
         color: $font-color-black;
       }
 
@@ -126,17 +122,7 @@ export default {
         }
       }
 
-      // 最新物流
-      //.tip-1 {
-      //  height: 40rpx;
-      //  line-height: 40rpx;
-      //  font-size: $font-size-small;
-      //  overflow: hidden;
-      //  border-radius: 2rpx solid #efefef;
-      //  color: #AAAAAA;
-      //}
-
-      // 更新时间
+      // 更新时间，最新物流
       .tip-2,
       .tip-1{
         height: 40rpx;
