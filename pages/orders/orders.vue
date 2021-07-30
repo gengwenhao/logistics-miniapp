@@ -3,38 +3,38 @@
 
     <!-- controls group -->
     <div class="control-group bg-white">
-      <u-input v-model="form.keyWord" :type="type" :border="true" placeholder="请输入订单编号"/>
+      <u-input v-model="form.keyWord" :type="type" :border="true" placeholder="（缺字段）请输入订单编号"/>
     </div>
 
     <!-- card list -->
     <view class="card-list" @click.self="toOrderDetail">
-      <view class="card" v-for="item in 4" :key="item">
+      <view class="card" v-for="(item, idx) in orderList" :key="idx">
         <view class="title">
-          <view class="title-l">订单号: 123412341234123</view>
-          <view class="title-r" @click="toOrderDetail">查看详情 ></view>
+          <view class="title-l">订单号: {{ item.id }}</view>
+          <view class="title-r" @click="toOrderDetail(item.id)">查看详情 ></view>
         </view>
         <view class="place">
           <view class="place-l">
             <view class="item">
               <view class="ch-1" style="width: 120rpx;height: 120rpx;line-height: 120rpx">南平市</view>
-              <view class="ch-2">陈冬冬</view>
+              <view class="ch-2">{{ item.sender }}</view>
             </view>
           </view>
           <view class="place-c">
             <view class="item">
-                <image style="width: 128rpx;height: 120rpx;" src="../../static/images/arrow.png" />
-              <view class="ch-2">已发货</view>
+              <image style="width: 128rpx;height: 120rpx;" src="../../static/images/arrow.png"/>
+              <view class="ch-2">{{ item.orderStatusName }}</view>
             </view>
           </view>
           <view class="place-r">
             <view class="item">
               <view class="ch-1" style="width: 120rpx;height: 120rpx;line-height: 120rpx">福州市</view>
-              <view class="ch-2">陈冬</view>
+              <view class="ch-2">{{ item.receiver }}</view>
             </view>
           </view>
         </view>
-        <view class="tip-1">最新物流：物流到达XXXXXXXXX准备发往XXXXXXXXX</view>
-        <view class="tip-2">更新时间：2021-02-02 10:20:10</view>
+        <view class="tip-1">最新物流：(缺字段)物流到达XXXXXXXXX准备发往XXXXXXXXX</view>
+        <view class="tip-2">更新时间：{{ item.flowList[0].flowTime || '' }}</view>
       </view>
       <view class="more">
         <u-loadmore icon-type="flower" :status="loadStatus" :load-text="loadText"/>
@@ -45,6 +45,10 @@
 </template>
 
 <script>
+import api from '../../api'
+import {trimObj} from "../../lib/tools"
+import {showLoading} from "../../lib/utils"
+
 export default {
   data() {
     return {
@@ -56,24 +60,87 @@ export default {
         nomore: '没有更多数据了'
       },
       form: {
-        keyWord: ''
+        keyWord: '',
+        limit: 20,
+        page: 1
       },
       orderList: []
     }
   },
+  computed: {
+    queryData() {
+      let o = {...this.form}
+      trimObj(o)
+
+      return o
+    }
+  },
   methods: {
     // 跳转到订单详情
-    toOrderDetail(){
+    toOrderDetail() {
       uni.navigateTo({
         url: '../order-detail/order-detail'
       })
+    },
+    // 查询订单列表
+    queryPage() {
+      // loading animate
+      showLoading()
+      // query data
+      api.listOrders(this.queryData).then(({data}) => {
+        console.log(data)
+
+        // stop loading animate
+        uni.hideLoading()
+
+        // update orderlsit
+        this.orderList = data.records
+      }).catch(err => {
+        // stop loading animate
+        uni.hideLoading()
+      })
+    },
+    // 查询更多订单
+    queryMorePage() {
+
+      // play bottom animate
+      this.loadStatus = 'loading'
+
+      // modify query length
+      this.form.limit += 20
+
+      // query data
+      api.listOrders(this.queryData).then(({data}) => {
+        console.log(data)
+
+        // stop animate
+        this.loadStatus = null
+
+        // roll back form modify
+        if (data.records.length === this.orderList.length) {
+          this.form.limit -= 20
+        }
+
+        // update orderlist
+        this.orderList = data.records
+      }).catch(err => {
+        // stop loading animate
+        uni.hideLoading()
+      })
     }
   },
+  onLoad() {
+    this.queryPage()
+  },
   // 下拉刷新事件
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     setTimeout(function () {
       uni.stopPullDownRefresh()
     }, 1000)
+  },
+  // 到达页面底部
+  onReachBottom() {
+    this.queryMorePage()
   }
 }
 </script>

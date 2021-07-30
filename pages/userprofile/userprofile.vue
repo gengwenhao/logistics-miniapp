@@ -4,8 +4,8 @@
 
     <!-- 顶部 -->
     <view class="avatar-panel">
-      <u-image width="150rpx" height="150rpx" src="../../../static/images/avatar.png" shape="circle"/>
-      <view class="nickname">哆唻A梦</view>
+      <u-image width="150rpx" height="150rpx" :src="avatarImgUrl" shape="circle"/>
+      <view class="nickname">{{ nickName }}</view>
     </view>
 
     <!-- 功能组 -->
@@ -18,18 +18,38 @@
 
     <!-- 退出登录 -->
     <view class="logout-panel">
-      <view class="btn">退出登录</view>
+      <view class="btn" @click="onLogout">退出登录</view>
     </view>
 
   </view>
 </template>
 
 <script>
+import {localRead, localRemove} from "../../lib/utils"
+
 export default {
   data() {
     return {}
   },
+  computed: {
+    avatarImgUrl() {
+      return localRead('detail').userInfo.avatarUrl || '../../../static/images/avatar.png'
+    },
+    nickName(){
+      return localRead('detail').userInfo.nickName || '未知昵称'
+    }
+  },
   methods: {
+    // 退出登录事件
+    onLogout() {
+      // remove token
+      localRemove('token')
+      // to login page
+      uni.navigateTo({
+        url: '../login/login'
+      })
+    },
+    // 跳转到地址簿
     toAddressList() {
       uni.navigateTo({
         url: '../address-list/address-list'

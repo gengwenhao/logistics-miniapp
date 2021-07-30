@@ -58,6 +58,20 @@
         "navigationBarTitleText": "编辑地址",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/userprofile-editor/userprofile-editor",
+      "style": {
+        "navigationBarTitleText": "个人信息完善",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "tabBar": {

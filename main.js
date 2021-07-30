@@ -9,6 +9,11 @@ App.mpType = 'app'
 // vue use
 Vue.use(uView)
 
+// defined global store
+Vue.prototype.$globalStore = {
+
+}
+
 const app = new Vue({
   ...App
 })
