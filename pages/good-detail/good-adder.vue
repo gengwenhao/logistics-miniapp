@@ -1,12 +1,25 @@
-<!-- 货物详情 -->
+<!-- 货物添加 -->
 <template>
-  <view id="good-detail">
+  <view id="good-adder">
+
+    <view class="top-control-group">
+      <u-input class="input" border="true" placeholder="请输入货物名称" />
+      <button class="btn blue">添加</button>
+    </view>
+
     <view class="good-list">
       <view class="card good" v-for="(name, idx) in nameList" :key="idx">
         <view class="good-title">
           <view class="index">
-            {{ idx + 1 }}、{{ name }}
+            {{ idx + 1 }}、
           </view>
+          <view class="title">
+            {{ name }}
+          </view>
+        </view>
+        <view class="control-group">
+          <view class="edit">编辑</view>
+          <view class="delete">删除</view>
         </view>
       </view>
     </view>
@@ -32,7 +45,7 @@ export default {
 <style scoped lang="scss">
 @import "../../static/styles/scss/geng.scss";
 
-#good-detail {
+#good-adder {
   @include background-common;
 
   // 控件组
@@ -72,10 +85,24 @@ export default {
 
         .title {
           text-indent: 16rpx;
+          padding-bottom: 20rpx;
         }
 
         font-size: $font-size-small;
         color: $font-color-black;
+        border-bottom: 2rpx solid $bg-color-gray;
+      }
+
+      .control-group {
+        margin-top: 8rpx;
+        font-size: $font-size-small;
+        color: $font-color-gray;
+        display: flex;
+
+        .edit {
+          margin-left: auto;
+          margin-right: 19rpx;
+        }
       }
     }
   }

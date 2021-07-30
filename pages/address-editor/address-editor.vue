@@ -4,15 +4,15 @@
 
     <div class="form-con">
       <div class="control-line">
-        <u-input v-model="form.name" :type="type" placeholder="真实姓名"/>
+        <u-input v-model="form.contacts" :type="type" placeholder="真实姓名"/>
       </div>
 
       <div class="control-line">
-        <u-input v-model="form.tel" :type="type" placeholder="电话"/>
+        <u-input v-model="form.phone" :type="type" placeholder="电话"/>
       </div>
 
       <div class="control-line">
-        <u-input v-model="form.city" :type="type" placeholder="城市/区域"
+        <u-input v-model="form.area" :type="type" placeholder="城市/区域"
                  @click="isShowCitySelector = true"/>
       </div>
 
@@ -22,8 +22,8 @@
     </div>
 
     <div class="btn-con">
-      <button class="btn red">清空</button>
-      <button class="btn blue">确定</button>
+      <button class="btn red" @click="clearForm">重置</button>
+      <button class="btn blue" @click="onSubmit">确定</button>
     </div>
 
 
@@ -33,6 +33,10 @@
 </template>
 
 <script>
+import api from '../../api'
+import {trimObj} from "../../lib/tools"
+import {checkUpdateAddressFormValid, localRead } from "../../lib/utils"
+
 export default {
   data() {
     return {
@@ -40,23 +44,90 @@ export default {
       isShowCitySelector: false,
       // form
       form: {
-        name: '',
-        tel: '',
-        city: '',
+        id: null,
+        contacts: '',
+        phone: '',
+        area: '',
         address: ''
       }
     }
   },
+  computed: {
+    queryData() {
+      // copy obj
+      let o = {...this.form}
+
+      // handle area field
+      if (this.form.area && this.form.area.includes('-')) {
+        let items = this.form.area.split('-') || ''
+        o.area = items.join('/')
+      }
+
+      // trim obj
+      trimObj(o)
+
+      return o
+    }
+  },
   methods: {
-    // printInfo
-    printInfo() {
-      this.isShowCitySelector = true
-      console.log('ggggggg')
+    // defined methods
+    // 提交表单
+    onSubmit() {
+      checkUpdateAddressFormValid(this.form) && api.updateAddress(this.queryData)
+          .then(res => {
+            uni.navigateBack()
+          }).catch(err => {
+            console.log(err)
+          })
     },
     // 城市选择事件
     onCityChange(e) {
-      this.form.city = e.province.label + '-' + e.city.label + '-' + e.area.label;
+      this.form.area = e.province.label + '-' + e.city.label + '-' + e.area.label;
+    },
+    // common methods
+    // clear form
+    clearForm() {
+      // defined template
+      // const template = {
+      //   contacts: null,
+      //   phone: null,
+      //   area: null,
+      //   address: null
+      // }
+      // load storage
+      let addressItem = localRead('addressItem')
+      if (!addressItem) {
+        uni.navigateBack()
+        return -1
+      }
+
+      // update form
+      this.form.address = addressItem.address
+      this.form.area = addressItem.area
+      this.form.contacts = addressItem.contacts
+      this.form.phone = addressItem.phone
+
+      // reset form
+      // Object.assign(this.form, template)
+    },
+    // printInfo
+    printInfo(data) {
+      console.log(data)
     }
+  },
+  onLoad(data) {
+    if (!data || !data.id) {
+      return -1
+    }
+
+    // save addressId
+    this.form.id = data.id
+
+    // init form
+    this.clearForm()
+
+    // remove storage
+    // localRemove('addressItem')
   }
 }
 </script>

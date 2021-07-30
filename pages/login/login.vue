@@ -19,13 +19,30 @@ import {localRead, localSave} from "../../lib/utils"
 export default {
   data() {
     return {
-      code: null,
-      sessionKey: null,
-      wxUserId: null,
-      encryptedData: null
+      // 定时器
+      interval: null
     }
   },
   methods: {
+    // 获取wxcode，必须在getUserInfo之前调用
+    getWXCode() {
+      // 获取wxcode
+      wx.login({
+        success(res) {
+          if (!res.code) {
+            uni.showToast({
+              title: '授权获取失败',
+              icon: 'none'
+            })
+
+            return -1
+          }
+
+          // 存储code，登录用户
+          localSave('code', res.code)
+        }
+      })
+    },
     // 微信小程序授权
     getUserInfo(res) {
       const self = this
@@ -50,26 +67,8 @@ export default {
       // 存储用户信息
       localSave('detail', res.detail)
 
-      // 获取wxcode
-      wx.login({
-        success(res) {
-          if (!res.code) {
-            uni.showToast({
-              title: '授权获取失败',
-              icon: 'none'
-            })
-
-            return -1
-          }
-
-          // 存储code，登录用户
-          self.$globalStore.code = res.code
-          localSave('code', res.code)
-
-          // 请求后端登录用户
-          self.login()
-        }
-      })
+      // 请求后端登录用户
+      self.login()
     },
     // 使用 wxcode 向后端发送登录请求
     login() {
@@ -81,7 +80,10 @@ export default {
       api.authorityLogin({code}).then(res => {
         // save token
         localSave('token', res.data.token)
-        console.log('to home page')
+
+        // clear interval
+        if (this.interval) clearInterval(this.interval)
+
         // to home page
         uni.switchTab({
           url: '../orders/orders'
@@ -90,6 +92,7 @@ export default {
         if (200 === err.code) {
           // save sessionKey
           localSave('sessionKey', err.data.sessionKey)
+
           // to editor page
           uni.navigateTo({
             url: '../userprofile-editor/userprofile-editor'
@@ -97,6 +100,12 @@ export default {
         }
       })
     }
+  },
+  onLoad() {
+    this.getWXCode()
+    this.interval = setInterval(() => {
+      this.getWXCode()
+    }, 30000)
   }
 }
 </script>

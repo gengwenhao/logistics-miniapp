@@ -3,12 +3,14 @@
 
     <!-- controls group -->
     <div class="control-group bg-white">
-      <u-input v-model="form.keyWord" :type="type" :border="true" placeholder="（缺字段）请输入订单编号"/>
+      <u-search v-model="form.orderId" :type="type" :border="true" focus="true" placeholder="请输入订单编号"
+                @search="queryPage" @custom="queryPage"/>
     </div>
 
     <!-- card list -->
-    <view class="card-list" @click.self="toOrderDetail">
-      <view class="card" v-for="(item, idx) in orderList" :key="idx">
+    <view class="card-list">
+      <view class="card" v-for="(item, idx) in orderList" :key="idx"
+            @click.self="toOrderDetail(item.id)">
         <view class="title">
           <view class="title-l">订单号: {{ item.id }}</view>
           <view class="title-r" @click="toOrderDetail(item.id)">查看详情 ></view>
@@ -34,7 +36,7 @@
           </view>
         </view>
         <view class="tip-1">最新物流：(缺字段)物流到达XXXXXXXXX准备发往XXXXXXXXX</view>
-        <view class="tip-2">更新时间：{{ item.flowList[0].flowTime || '' }}</view>
+        <view class="tip-2">更新时间：{{ item.lastFlowRecord.flowTime || '' }}</view>
       </view>
       <view class="more">
         <u-loadmore icon-type="flower" :status="loadStatus" :load-text="loadText"/>
@@ -60,7 +62,7 @@ export default {
         nomore: '没有更多数据了'
       },
       form: {
-        keyWord: '',
+        orderId: '',
         limit: 20,
         page: 1
       },
@@ -77,9 +79,10 @@ export default {
   },
   methods: {
     // 跳转到订单详情
-    toOrderDetail() {
+    toOrderDetail(id) {
+      console.log(id)
       uni.navigateTo({
-        url: '../order-detail/order-detail'
+        url: `../order-detail/order-detail?orderId=${id}`
       })
     },
     // 查询订单列表
@@ -87,7 +90,7 @@ export default {
       // loading animate
       showLoading()
       // query data
-      api.listOrders(this.queryData).then(({data}) => {
+      api.listOrder(this.queryData).then(({data}) => {
         console.log(data)
 
         // stop loading animate
@@ -102,7 +105,6 @@ export default {
     },
     // 查询更多订单
     queryMorePage() {
-
       // play bottom animate
       this.loadStatus = 'loading'
 
@@ -110,7 +112,7 @@ export default {
       this.form.limit += 20
 
       // query data
-      api.listOrders(this.queryData).then(({data}) => {
+      api.listOrder(this.queryData).then(({data}) => {
         console.log(data)
 
         // stop animate
@@ -134,9 +136,8 @@ export default {
   },
   // 下拉刷新事件
   onPullDownRefresh() {
-    setTimeout(function () {
-      uni.stopPullDownRefresh()
-    }, 1000)
+    this.queryPage()
+    uni.stopPullDownRefresh()
   },
   // 到达页面底部
   onReachBottom() {

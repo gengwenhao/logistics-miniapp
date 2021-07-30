@@ -1,30 +1,16 @@
-import settings from "./settings"
-import gengReq from "./geng-request"
+// 导入api可以使用所有接口，例如：api.updateAddress
+import login from "./module/login"
+import address from "./module/address"
+import good from "./module/good"
+import order from "./module/order"
 
 export default {
-  // 登录
-  // 授权登录
-  'authorityLogin': (data) => gengReq({
-    url: `wx/miniApp/customer/${settings.APP_ID}/authorityLogin`,
-    method: 'post',
-    data
-  }),
-  // 根据微信code 判断该微信用户是否已经在系统中存在
-  'getWxUserState': () => gengReq({
-    url: `wx/miniApp/customer/${settings.APP_ID}/getWxUserState`,
-    method: 'get'
-  }),
-  // 完善个人信息
-  'editUserInfo': (data) => gengReq({
-    url: `/wx/miniApp/customer/${settings.APP_ID}/bindAccount`,
-    method: 'post',
-    data
-  }),
-  // 订单管理
-  // 分页查看订单
-  'listOrders': (data) => gengReq({
-    url: `/front/customer/orderInfo/CustomerPage`,
-    method: 'get',
-    data
-  })
+  // 登录相关接口
+  ...login,
+  // 订单相关接口
+  ...order,
+  // 货物相关接口
+  ...good,
+  // 地址相关接口
+  ...address
 }

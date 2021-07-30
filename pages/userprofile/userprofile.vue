@@ -1,7 +1,6 @@
 <template>
   <view id="userprofile">
 
-
     <!-- 顶部 -->
     <view class="avatar-panel">
       <u-image width="150rpx" height="150rpx" :src="avatarImgUrl" shape="circle"/>
@@ -35,7 +34,7 @@ export default {
     avatarImgUrl() {
       return localRead('detail').userInfo.avatarUrl || '../../../static/images/avatar.png'
     },
-    nickName(){
+    nickName() {
       return localRead('detail').userInfo.nickName || '未知昵称'
     }
   },

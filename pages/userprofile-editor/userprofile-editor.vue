@@ -20,7 +20,8 @@
 
 <script>
 import api from '../../api'
-import {checkFormValid, localRead, localSave} from "../../lib/utils"
+import {checkBindAccountFormValid, localRead, localSave} from "../../lib/utils"
+import {trimObj} from "../../lib/tools"
 
 export default {
   data() {
@@ -43,11 +44,7 @@ export default {
       o.sessionKey = localRead('sessionKey') || null
 
       // 删除对象空项
-      for (let key in o) {
-        if (o.hasOwnProperty(key) && o[key] === null) {
-          delete o[key]
-        }
-      }
+      trimObj(o)
 
       return o
     }
@@ -55,7 +52,7 @@ export default {
   methods: {
     // 提交用户信息
     onSubmit() {
-      checkFormValid(this.form) && api.editUserInfo(this.queryData).then(res => {
+      checkBindAccountFormValid(this.form) && api.bindAccount(this.queryData).then(res => {
         console.log(res)
         // save token
         localSave('token', res.data.token)
