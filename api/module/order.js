@@ -11,7 +11,13 @@ export default {
   // 查看订单
   'getOrder': (data) => gengReq({
     url: `/customer/orderInfo/detail`,
-    methods: 'get',
+    method: 'get',
+    data
+  }),
+  // 客户下单
+  'createOrder': (data) => gengReq({
+    url: `/customer/orderInfo/customerPlaceOrder`,
+    method: 'post',
     data
   })
 }

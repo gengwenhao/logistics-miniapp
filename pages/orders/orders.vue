@@ -10,33 +10,37 @@
     <!-- card list -->
     <view class="card-list">
       <view class="card" v-for="(item, idx) in orderList" :key="idx"
-            @click.self="toOrderDetail(item.id)">
+            @click.self="toOrderDetail(item)">
         <view class="title">
           <view class="title-l">订单号: {{ item.id }}</view>
-          <view class="title-r" @click="toOrderDetail(item.id)">查看详情 ></view>
+          <view class="title-r" @click="toOrderDetail(item)">查看详情 ></view>
         </view>
         <view class="place">
           <view class="place-l">
             <view class="item">
-              <view class="ch-1" style="width: 120rpx;height: 120rpx;line-height: 120rpx">南平市</view>
-              <view class="ch-2">{{ item.sender }}</view>
+              <view class="ch-1" style="height: 120rpx;line-height: 120rpx">
+                {{ item.senderArea | areaDisplay }}
+              </view>
+              <view class="ch-2">{{ item.sender || '未知寄件人' }}</view>
             </view>
           </view>
           <view class="place-c">
             <view class="item">
               <image style="width: 128rpx;height: 120rpx;" src="../../static/images/arrow.png"/>
-              <view class="ch-2">{{ item.orderStatusName }}</view>
+              <view class="ch-2">{{ item.orderStatusName || '未知状态' }}</view>
             </view>
           </view>
           <view class="place-r">
             <view class="item">
-              <view class="ch-1" style="width: 120rpx;height: 120rpx;line-height: 120rpx">福州市</view>
-              <view class="ch-2">{{ item.receiver }}</view>
+              <view class="ch-1" style="height: 120rpx;line-height: 120rpx">
+                {{ item.receiverArea | areaDisplay }}
+              </view>
+              <view class="ch-2">{{ item.receiver || '未知接收人' }}</view>
             </view>
           </view>
         </view>
-        <view class="tip-1">最新物流：(缺字段)物流到达XXXXXXXXX准备发往XXXXXXXXX</view>
-        <view class="tip-2">更新时间：{{ item.lastFlowRecord.flowTime || '' }}</view>
+        <view class="tip-1">最新物流：{{ item.lastFlowRecord.flowAddress || '暂无' }}</view>
+        <view class="tip-2">更新时间：{{ item.lastFlowRecord.flowTime || '暂无' }}</view>
       </view>
       <view class="more">
         <u-loadmore icon-type="flower" :status="loadStatus" :load-text="loadText"/>
@@ -77,12 +81,24 @@ export default {
       return o
     }
   },
+  filters: {
+    areaDisplay(val) {
+      if (!val) return ''
+
+      let arr = val.split('/')
+      if (arr.length > 2) {
+        return arr[1]
+      }
+
+      return ''
+    }
+  },
   methods: {
     // 跳转到订单详情
-    toOrderDetail(id) {
-      console.log(id)
+    toOrderDetail(item) {
+      if (!item || !item.id) return -1
       uni.navigateTo({
-        url: `../order-detail/order-detail?orderId=${id}`
+        url: `../order-detail/order-detail?orderId=${item.id}`
       })
     },
     // 查询订单列表
@@ -192,8 +208,9 @@ export default {
           align-items: center;
 
           .ch-1 {
-            font-size: 40rpx;
+            font-size: 30rpx;
             font-weight: bold;
+            text-align: center;
           }
 
           .ch-2 {

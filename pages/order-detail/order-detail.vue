@@ -131,8 +131,8 @@
       </view>
       <view class="service-sub-detail">
         <view class="detail" v-if="goodsInfo.quantity">数量：{{ goodsInfo.quantity }}</view>
-        <view class="detail" v-if="goodsInfo.volume">体积：{{ goodsInfo.volume }}</view>
-        <view class="detail" v-if="goodsInfo.weight">重量：{{ goodsInfo.weight }}</view>
+        <view class="detail" v-if="goodsInfo.volume">体积：{{ goodsInfo.volume }} m²</view>
+        <view class="detail" v-if="goodsInfo.weight">重量：{{ goodsInfo.weight }} kg</view>
       </view>
     </view>
 

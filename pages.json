@@ -72,6 +72,13 @@
         "navigationBarTitleText": "个人信息完善",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/good-adder/good-adder",
+      "style": {
+        "navigationBarTitleText": "货物信息",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "tabBar": {

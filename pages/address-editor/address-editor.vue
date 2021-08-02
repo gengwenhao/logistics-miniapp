@@ -87,14 +87,7 @@ export default {
     // common methods
     // clear form
     clearForm() {
-      // defined template
-      // const template = {
-      //   contacts: null,
-      //   phone: null,
-      //   area: null,
-      //   address: null
-      // }
-      // load storage
+      // read storage
       let addressItem = localRead('addressItem')
       if (!addressItem) {
         uni.navigateBack()

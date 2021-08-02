@@ -11,7 +11,7 @@
     <view class="tool-list">
       <view class="card tool" @click="toAddressList">
         <u-image width="60rpx" height="60rpx" src="../../../static/images/address.png"/>
-        <view class="tool-title" @click="toAddressList">地址簿</view>
+        <view class="tool-title">地址簿</view>
       </view>
     </view>
 
