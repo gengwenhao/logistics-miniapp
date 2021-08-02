@@ -235,21 +235,21 @@ export default {
 
         // 其他要求
         // 是否装货
-        isLoading: null,
+        isLoading: 1,
         // 是否卸货
-        isUnload: null,
+        isUnload: 1,
         // 送货预约时间
         deliveryTime: null,
         // 提货预约时间
         pickUpTime: null,
         // 提货方式
-        pickUpWayCode: null,
+        pickUpWayCode: 'customer_delivery',
         // 提货方式名称
-        pickUpWayName: null,
+        pickUpWayName: '客户自送',
         // 送货方式
-        deliveryWayCode: null,
+        deliveryWayCode: 'customer_take',
         // 送货方式名称
-        deliveryWayName: null,
+        deliveryWayName: '客户自提',
         // 备注
         remarks: null
       },
@@ -294,7 +294,15 @@ export default {
       if (!this.form) return -1
       checkUpdateOrderFormValid(this.form) && api.createOrder(this.queryData)
           .then(res => {
-            console.log(res)
+            uni.showModal({
+              title: '创建成功',
+              showCancel: false,
+              success() {
+                uni.switchTab({
+                  url: '../orders/orders'
+                })
+              }
+            })
           })
           .catch(err => {
             console.log(err)
