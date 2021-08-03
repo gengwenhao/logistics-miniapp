@@ -21,7 +21,7 @@
       "path": "pages/deliver/deliver",
       "style": {
         "navigationBarTitleText": "我要发货",
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": false
       }
     },
     {

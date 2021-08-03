@@ -19,7 +19,7 @@
         <view class="place">
           <view class="place-l">
             <view class="item">
-              <view class="ch-1" style="width: 280rpx;height: 120rpx;line-height: 120rpx">
+              <view class="ch-1 first" style="width: 280rpx;height: 120rpx;line-height: 120rpx">
                 {{ item.senderArea | areaDisplay }}
               </view>
               <view class="ch-2">{{ item.sender || '未知寄件人' }}</view>
@@ -33,7 +33,7 @@
           </view>
           <view class="place-r">
             <view class="item">
-              <view class="ch-1" style="width: 280rpx;height: 120rpx;line-height: 120rpx">
+              <view class="ch-1 second" style="width: 280rpx;height: 120rpx;line-height: 120rpx">
                 {{ item.receiverArea | areaDisplay }}
               </view>
               <view class="ch-2">{{ item.receiver || '未知接收人' }}</view>
@@ -48,6 +48,11 @@
       </view>
     </view>
 
+    <!-- 回到顶部 -->
+    <view class="wrap">
+      <u-back-top :scroll-top="scrollTop" mode="square" :icon-style="iconStyle"/>
+    </view>
+
   </view>
 </template>
 
@@ -59,6 +64,12 @@ import containsCityName, {showLoading} from "../../lib/utils"
 export default {
   data() {
     return {
+      // 滚动条未知
+      scrollTop: 0,
+      // toTop 形状
+      iconStyle: {
+        color: '#FFF'
+      },
       // 加载状态
       loadStatus: null,
       loadText: {
@@ -161,6 +172,10 @@ export default {
   // 到达页面底部
   onReachBottom() {
     this.queryMorePage()
+  },
+  // 页面滚动条位移事件
+  onPageScroll(e) {
+    this.scrollTop = e.scrollTop;
   }
 }
 </script>
@@ -181,9 +196,10 @@ export default {
   }
 
   .card-list {
-    padding: 34rpx;
+    padding: $padding-common;
 
     .card {
+      padding: $padding-lg;
 
       // 订单号
       .title {
@@ -211,9 +227,17 @@ export default {
           align-items: center;
 
           .ch-1 {
-            font-size: 30rpx;
+            font-size: 40rpx;
             font-weight: bold;
             text-align: center;
+
+            &.first{
+              color: $font-color-blue;
+            }
+
+            &.second{
+              color: $font-color-green;
+            }
           }
 
           .ch-2 {
