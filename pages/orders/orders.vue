@@ -1,3 +1,4 @@
+<!-- 我的订单 -->
 <template>
   <view id="orders">
 
@@ -53,7 +54,7 @@
 <script>
 import api from '../../api'
 import {trimObj} from "../../lib/tools"
-import {showLoading} from "../../lib/utils"
+import containsCityName, {showLoading} from "../../lib/utils"
 
 export default {
   data() {
@@ -86,8 +87,10 @@ export default {
       if (!val) return ''
 
       let arr = val.split('/')
-      if (arr.length > 2) {
-        return arr[1]
+      for (const item of arr) {
+        if (containsCityName(item)) {
+          return item
+        }
       }
 
       return ''
@@ -211,8 +214,6 @@ export default {
             font-size: 30rpx;
             font-weight: bold;
             text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
           }
 
           .ch-2 {

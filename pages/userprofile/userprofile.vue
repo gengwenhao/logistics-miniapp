@@ -1,9 +1,10 @@
+<!-- 个人中心 -->
 <template>
   <view id="userprofile">
 
     <!-- 顶部 -->
     <view class="avatar-panel">
-      <u-image width="150rpx" height="150rpx" :src="avatarImgUrl" shape="circle"/>
+      <u-image width="130rpx" height="130rpx" :src="avatarImgUrl" shape="circle"/>
       <view class="nickname">{{ nickName }}</view>
     </view>
 
@@ -65,6 +66,7 @@ export default {
   @include background-common;
   display: flex;
   flex-direction: column;
+  color: $font-color-black;
 
   // 头像面板
   .avatar-panel {
@@ -74,11 +76,11 @@ export default {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 80rpx;
+    padding-left: 50rpx;
 
     .nickname {
       text-indent: 38rpx;
-      font-size: 35rpx;
+      font-size: $uni-font-size-base;
     }
   }
 

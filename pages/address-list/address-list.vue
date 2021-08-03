@@ -26,8 +26,8 @@
         </view>
         <view class="edit-group">
           <view class="inner-con">
-            <view class="edit-item" @click="toAddressEditor(item)">编辑</view>
-            <view class="edit-item" @click="handleDeleteItem(item)">删除</view>
+            <view class="edit-item" @click.stop="toAddressEditor(item)">编辑</view>
+            <view class="edit-item" @click.stop="handleDeleteItem(item)">删除</view>
           </view>
         </view>
       </view>

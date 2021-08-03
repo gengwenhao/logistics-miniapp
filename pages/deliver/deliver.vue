@@ -1,3 +1,4 @@
+<!-- 我要发货页面 -->
 <template>
   <view id="deliver">
 
@@ -55,8 +56,8 @@
         <view class="add-good" @click="toGoodAdder">添加货物</view>
       </view>
       <view class="goods-con">
-        <view class="goods-list" v-if="form.goodList.length > 0">
-          <view class="good-item" v-for="(name, idx) in form.goodList.slice(0, 3)" :key="idx">{{ idx + 1 }}、{{
+        <view class="goods-list" v-if="form.goodsList.length > 0">
+          <view class="good-item" v-for="(name, idx) in form.goodsList.slice(0, 3)" :key="idx">{{ idx + 1 }}、{{
               name
             }}
           </view>
@@ -85,7 +86,7 @@
           </u-form-item>
 
           <u-form-item label-width="140" required label="结算方式">
-            <u-input v-model="form.settlementName" type="select"
+            <u-input v-model="form.settlementWayName" type="select"
                      @click="isShowSettleNameSelector = true"/>
             <u-action-sheet :list="settlementWayList"
                             v-model="isShowSettleNameSelector"
@@ -97,7 +98,7 @@
           </u-form-item>
 
           <u-form-item label-width="140" required label="运输方式">
-            <u-input v-model="form.transportName" type="select"
+            <u-input v-model="form.transportWayName" type="select"
                      @click="isShowTransportNameSelector = true"/>
             <u-action-sheet :list="transportWayList"
                             v-model="isShowTransportNameSelector"
@@ -213,7 +214,7 @@ export default {
 
         // 货物信息
         // 货物列表
-        goodList: [], // modify
+        goodsList: [],
 
         // 服务要求
         // 选中工厂名
@@ -221,13 +222,13 @@ export default {
         // 选中工厂ID
         factoryId: null,
         // 选中结算方式
-        settlementName: null,
+        settlementWayName: null,
         // 选中结算方式ID
         settlementWayCode: null,
         // 货物单号
         orderCode: null,
         // 选中运输方式
-        transportName: null,
+        transportWayName: null,
         // 选中运输方式的编码
         transportWayCode: null,
         // 期望送达时间
@@ -270,13 +271,13 @@ export default {
       delete o.factoryName
 
       // create good list
-      if (this.form.goodList && this.form.goodList.length > 0) {
-        o.goodList = {
-          goodsName: o.goodList.join('/') + '/',
+      if (this.form.goodsList && this.form.goodsList.length > 0) {
+        o.goodsList = [{
+          goodsName: o.goodsList.join('/') + '/',
           volume: '',
           weight: '',
           quantity: ''
-        }
+        }]
       }
 
       // trim empty value
@@ -318,14 +319,14 @@ export default {
     // 选中结算方式
     handleSelectedSettlementWay(idx) {
       if (idx > -1 && idx < this.settlementWayList.length) {
-        this.form.settlementName = this.settlementWayList[idx].key
+        this.form.settlementWayName = this.settlementWayList[idx].key
         this.form.settlementWayCode = this.settlementWayList[idx].value
       }
     },
     // 选中运输方式
     handleSelectedTransportWay(idx) {
       if (idx > -1 && idx < this.transportWayList.length) {
-        this.form.transportName = this.transportWayList[idx].key
+        this.form.transportWayName = this.transportWayList[idx].key
         this.form.transportWayCode = this.transportWayList[idx].value
       }
     },
@@ -373,7 +374,7 @@ export default {
     // 清空本地表单存储
     localRemove('sendData')
     localRemove('receiverData')
-    localRemove('goodList')
+    localRemove('goodsList')
 
     // 查询表单可选择参数
     this.queryOptionList()
@@ -392,7 +393,7 @@ export default {
     this.form.receiverAddress = receiverData.address || null
     this.form.receiverArea = receiverData.area || null
 
-    this.form.goodList = localRead('goodList')
+    this.form.goodsList = localRead('goodsList')
   }
 }
 </script>

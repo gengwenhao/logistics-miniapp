@@ -1,4 +1,4 @@
-<!-- 完善个人信息 -->
+<!-- 完善个人信息，未绑定手机号的用户登录时会跳转到该页面 -->
 <template>
   <view id="userprofile-editor">
     <div class="card">

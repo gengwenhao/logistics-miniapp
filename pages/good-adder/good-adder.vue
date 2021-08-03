@@ -9,7 +9,7 @@
     </view>
 
     <view class="good-list">
-      <view class="card good" v-for="(name, idx) in goodList" :key="idx">
+      <view class="card good" v-for="(name, idx) in goodsList" :key="idx">
         <view class="good-title">
           <view class="index">
             {{ idx + 1 }}、
@@ -19,8 +19,8 @@
           </view>
         </view>
         <view class="control-group">
-          <view class="edit" @click="handleEditItem(name, idx)">编辑</view>
-          <view class="delete" @click="handleDeleteItem(idx)">删除</view>
+          <view class="edit" @click.stop="handleEditItem(name, idx)">编辑</view>
+          <view class="delete" @click.stop="handleDeleteItem(idx)">删除</view>
         </view>
       </view>
     </view>
@@ -34,7 +34,7 @@ import {localRead, localSave} from "../../lib/utils"
 export default {
   data() {
     return {
-      goodList: [],
+      goodsList: [],
       goodName: '',
       // 显示模式（默认显示添加，不显示编辑）
       isEditor: false,
@@ -43,9 +43,9 @@ export default {
     }
   },
   watch: {
-    goodList: {
+    goodsList: {
       handler(val) {
-        localSave('goodList', val)
+        localSave('goodsList', val)
       },
       deep: true
     }
@@ -54,13 +54,13 @@ export default {
     // 确认添加货物事件
     handleAddGood() {
       if (!this.goodName) return -1
-      this.goodList.push(this.goodName)
+      this.goodsList.push(this.goodName)
       this.goodName = ''
     },
     // 确认编辑货物事件
     handleEditGoodConfirm() {
-      if (!this.goodName || this.editIdx >= this.goodList.length) return -1
-      this.goodList.splice(this.editIdx, 1, this.goodName)
+      if (!this.goodName || this.editIdx >= this.goodsList.length) return -1
+      this.goodsList.splice(this.editIdx, 1, this.goodName)
       this.goodName = ''
       this.isEditor = false
     },
@@ -76,21 +76,21 @@ export default {
         success(res) {
           console.log(idx)
           if (res.confirm) {
-            self.goodList.splice(idx, 1)
+            self.goodsList.splice(idx, 1)
           }
         }
       })
     },
     // 编辑货物
     handleEditItem(name, idx) {
-      if (!name || idx >= this.goodList.length) return -1
+      if (!name || idx >= this.goodsList.length) return -1
       this.isEditor = true
       this.editIdx = idx
       this.goodName = name
     }
   },
   onLoad() {
-    this.goodList = localRead('goodList') || []
+    this.goodsList = localRead('goodsList') || []
   }
 }
 </script>

@@ -1,3 +1,4 @@
+<!-- 地址编辑页面 -->
 <template>
   <view id="address-editor">
     <div class="title">联系人信息</div>

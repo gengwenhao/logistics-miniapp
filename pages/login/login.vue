@@ -1,3 +1,4 @@
+<!-- 登录 -->
 <template>
   <view id="login">
     <div class="card">

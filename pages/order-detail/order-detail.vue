@@ -1,3 +1,4 @@
+<!-- 订单详情 -->
 <template>
   <view id="order-detail">
 
@@ -45,7 +46,7 @@
     <view class="card express-info">
       <view class="express-title">物流信息</view>
       <view class="express-detail">
-      <view class="express-line" v-for="(item, idx) in orderDetail.flowList" :key="idx">
+        <view class="express-line" v-for="(item, idx) in orderDetail.flowList" :key="idx">
           <view class="status-name">{{ item.flowTypeCode | flowTypeDisplay }}</view>
           <view class="status-icon">
             <view class="inner-icon"></view>
@@ -148,7 +149,9 @@ export default {
   data() {
     return {
       orderId: null,
-      orderDetail: null
+      orderDetail: {
+        flowList: []
+      }
     }
   },
   computed: {
@@ -176,12 +179,12 @@ export default {
       return o
     }
   },
-  filters:{
-    flowTypeDisplay(val){
-      if(!val) return ''
+  filters: {
+    flowTypeDisplay(val) {
+      if (!val) return ''
       switch (val) {
         case 'new_order':
-          return '未接受'
+          return '未接收'
         case 'depart':
           return '已发货'
         case 'arrive':
