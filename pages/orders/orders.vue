@@ -5,7 +5,7 @@
     <!-- controls group -->
     <div class="control-group bg-white">
       <u-search v-model="form.orderId" :type="type" :border="true" focus="true" placeholder="请输入订单编号"
-                @search="queryPage" @custom="queryPage"/>
+                @search="$u.throttle(queryPage, 500)" @custom="$u.throttle(queryPage, 500)"/>
     </div>
 
     <!-- card list -->

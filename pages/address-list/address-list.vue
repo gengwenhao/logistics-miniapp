@@ -7,8 +7,8 @@
       <u-search class="input" placeholder="请输入姓名/手机号/地址"
                 :border="true"
                 v-model="form.keyWord"
-                @search="queryPage"
-                @custom="queryPage"/>
+                @search="$u.throttle(queryPage, 500)"
+                @custom="$u.throttle(queryPage, 500)"/>
     </view>
     <!-- 地址列表 -->
     <view class="address-group">

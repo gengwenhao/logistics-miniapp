@@ -169,7 +169,7 @@
             <u-input type="textarea" border="true" v-model="form.remarks"/>
           </u-form-item>
 
-          <button class="btn blue" @click="onSubmit">提交订单</button>
+          <button class="btn blue" @click="$u.throttle(onSubmit, 500)">提交订单</button>
         </u-form>
       </div>
     </view>
@@ -287,18 +287,58 @@ export default {
     }
   },
   methods: {
+    // 清空表单
+    clearForm(){
+      // 清空本地表单存储
+      localRemove('sendData')
+      localRemove('receiverData')
+      localRemove('goodsList')
+
+      // rest form
+      this.form = {
+        sender: null,
+        senderPhone: null,
+        senderAddress: null,
+        senderArea: null,
+        receiver: null,
+        receiverPhone: null,
+        receiverAddress: null,
+        receiverArea: null,
+        goodsList: [],
+        factoryName: null, // del
+        factoryId: null,
+        settlementWayName: null,
+        settlementWayCode: null,
+        orderCode: null,
+        transportWayName: null,
+        transportWayCode: null,
+        deliveryPlanTime: null,
+        isLoading: 1,
+        isUnload: 1,
+        deliveryTime: null,
+        pickUpTime: null,
+        pickUpWayCode: 'customer_delivery',
+        pickUpWayName: '客户自送',
+        deliveryWayCode: 'customer_take',
+        deliveryWayName: '客户自提',
+        remarks: null
+      }
+    },
+    // 打印
     printInfo(e) {
       console.log(e)
     },
     // 提交表单
     onSubmit() {
       if (!this.form) return -1
+      let self = this
       checkUpdateOrderFormValid(this.form) && api.createOrder(this.queryData)
           .then(res => {
             uni.showModal({
               title: '创建成功',
               showCancel: false,
               success() {
+                self.clearForm()
                 uni.switchTab({
                   url: '../orders/orders'
                 })

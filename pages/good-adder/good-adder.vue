@@ -3,9 +3,9 @@
   <view id="good-adder">
 
     <view class="top-control-group">
-      <u-input class="input" border="true" placeholder="请输入货物名称" v-model="goodName"/>
-      <button class="btn blue" @click="handleEditGoodConfirm" v-if="isEditor">编辑</button>
-      <button class="btn blue" @click="handleAddGood" v-else>添加</button>
+      <u-input class="input" type="text" border="true" placeholder="请输入货物名称" v-model="goodName"/>
+      <button class="btn blue" @click="handleEditGoodConfirm" v-if="isEditor">完成编辑</button>
+      <button class="btn blue" @click="handleAddGood" v-else>完成添加</button>
     </view>
 
     <view class="good-list">
@@ -113,11 +113,13 @@ export default {
 
     .input {
       width: calc(100% - 200rpx);
+      height: 70rpx;
+      line-height: 70rpx;
     }
 
     .btn {
       width: 180rpx;
-      height: 76rpx;
+      height: 70rpx;
       line-height: 70rpx;
       border-radius: 8rpx;
     }

@@ -106,7 +106,7 @@ export default {
     this.getWXCode()
     this.interval = setInterval(() => {
       this.getWXCode()
-    }, 30000)
+    }, 5000)
   }
 }
 </script>
