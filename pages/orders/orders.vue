@@ -79,7 +79,7 @@ export default {
       },
       form: {
         orderId: '',
-        limit: 20,
+        limit: 30,
         page: 1
       },
       orderList: []
@@ -139,25 +139,30 @@ export default {
       this.loadStatus = 'loading'
 
       // modify query length
-      this.form.limit += 20
+      this.form.page += 1
 
       // query data
       api.listOrder(this.queryData).then(({data}) => {
-        console.log(data)
+        // 检查异常数据
+        if (!data || !data.records) {
+          // stop animate
+          this.loadStatus = null
+          return -1
+        }
 
         // stop animate
         this.loadStatus = null
 
         // roll back form modify
-        if (data.records.length === this.orderList.length) {
-          this.form.limit -= 20
+        if (data.records.length === 0) {
+          this.form.page -= 1
         }
 
-        // update orderlist
-        this.orderList = data.records
+        // update order list
+        this.orderList.push(...data.records)
       }).catch(err => {
         // stop loading animate
-        uni.hideLoading()
+        this.loadStatus = null
       })
     }
   },
