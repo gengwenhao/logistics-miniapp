@@ -21,25 +21,29 @@
 ### 订单详情
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gengwenhao/logistics-miniapp/dev/screenshots/%E8%AE%A2%E5%8D%95%E8%AF%A6%E6%83%85.jpg" alt="订单详情" width="400px">
+  <img src="https://raw.githubusercontent.com/gengwenhao/logistics-miniapp/dev/screenshots/%E8%AE%A2%E5%8D%95%E8%AF%A6%E6%83%85.jpg" 
+    alt="订单详情" width="400px">
 </p>
 
 ### 发货页面
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gengwenhao/logistics-miniapp/dev/screenshots/%E5%8F%91%E8%B4%A7%E9%A1%B5%E9%9D%A2.jpg" alt="授权登录" width="400px">
+  <img src="https://raw.githubusercontent.com/gengwenhao/logistics-miniapp/dev/screenshots/%E5%8F%91%E8%B4%A7%E9%A1%B5%E9%9D%A2.jpg" 
+    alt="发货页面" width="400px">
 </p>
 
 ### 个人中心
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gengwenhao/logistics-miniapp/dev/screenshots/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83.jpg" alt="授权登录" width="400px">
+  <img src="https://raw.githubusercontent.com/gengwenhao/logistics-miniapp/dev/screenshots/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83.jpg" 
+    alt="个人中心" width="400px">
 </p>
 
 ### 地址簿
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gengwenhao/logistics-miniapp/dev/screenshots/%E5%9C%B0%E5%9D%80%E7%B0%BF.jpg" alt="授权登录" width="400px">
+  <img src="https://raw.githubusercontent.com/gengwenhao/logistics-miniapp/dev/screenshots/%E5%9C%B0%E5%9D%80%E7%B0%BF.jpg" 
+    alt="地址簿" width="400px">
 </p>
 
 ## 项目依赖
