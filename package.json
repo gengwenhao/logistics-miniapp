@@ -1,7 +1,7 @@
 {
-  "name": "logistics-customer-miniapp",
-  "version": "1.0.0",
-  "description": "",
+  "name": "logistics-miniapp",
+  "version": "1.0.1",
+  "description": "基于Vue.js和uni-app开发的小程序",
   "main": "main.js",
   "directories": {
     "lib": "lib"
@@ -9,11 +9,11 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "https://codeup.aliyun.com/fz_mts/xiamen/logistics-customer-miniapp.git"
+    "url": "https://github.com/gengwenhao/logistics-miniapp"
   },
   "keywords": [],
   "author": "gengwenhao",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@dcloudio/types": "^2.4.5"
   }
